@@ -1,120 +1,148 @@
-🎬 Sinema Bilet Satış Sistemi
+# 🎬 Sinema Bilet Satış Sistemi
+
 Kapsamlı bir sinema bilet satış sistemi için tasarlanmış veritabanı projesi. Bu proje, modern sinema işletmelerinin ihtiyaçlarını karşılamak üzere geliştirilmiş ER diyagramı ve veritabanı yapısını içermektedir.
-✨ Özellikler
-🎭 Film Yönetimi
 
-Film bilgileri (ad, tür, süre, yönetmen, oyuncular)
-Film posterleri ve açıklamaları
-Yaş sınırı ve dil seçenekleri
+## ✨ Özellikler
 
-🏢 Salon ve Seans Yönetimi
+🎭 **Film Yönetimi**
+- Film bilgileri (ad, tür, süre, yönetmen, oyuncular)
+- Film posterleri ve açıklamaları
+- Yaş sınırı ve dil seçenekleri
 
-Çoklu salon desteği
-Koltuk düzenleri ve kapasiteler
-Flexible seans programlama
-Farklı film formatları (2D, 3D, IMAX)
+🏢 **Salon ve Seans Yönetimi**
+- Çoklu salon desteği
+- Koltuk düzenleri ve kapasiteler
+- Flexible seans programlama
+- Farklı film formatları (2D, 3D, IMAX)
 
-🎫 Bilet Rezervasyon Sistemi
+🎫 **Bilet Rezervasyon Sistemi**
+- Online bilet satışı
+- Koltuk seçimi ve rezervasyon
+- Fiyat kategorileri (öğrenci, tam, indirimli)
+- Bilet iptali ve iade işlemleri
 
-Online bilet satışı
-Koltuk seçimi ve rezervasyon
-Fiyat kategorileri (öğrenci, tam, indirimli)
-Bilet iptali ve iade işlemleri
+👤 **Müşteri Yönetimi**
+- Kullanıcı kayıt ve giriş sistemi
+- Müşteri profil bilgileri
+- Satın alma geçmişi
+- Sadakat puanları
 
-👤 Müşteri Yönetimi
+💰 **Finansal Takip**
+- Satış raporları
+- Gelir analizi
+- Kasa ve ödeme yöntemleri
+- İndirim ve kampanya yönetimi
 
-Kullanıcı kayıt ve giriş sistemi
-Müşteri profil bilgileri
-Satın alma geçmişi
-Sadakat puanları
+## 🗂️ Veritabanı Yapısı
 
-💰 Finansal Takip
+### Ana Tablolar
 
-Satış raporları
-Gelir analizi
-Kasa ve ödeme yöntemleri
-İndirim ve kampanya yönetimi
+| Tablo | Açıklama |
+|-------|----------|
+| `filmler` | Film bilgileri ve detayları |
+| `salonlar` | Sinema salonları ve özellikleri |
+| `seanslar` | Film gösterim seansları |
+| `koltuklar` | Salon koltuk düzenleri |
+| `musteriler` | Müşteri bilgileri |
+| `biletler` | Satılan bilet kayıtları |
+| `odemeler` | Ödeme işlemleri |
+| `calisanlar` | Personel bilgileri |
 
-🗂️ Veritabanı Yapısı
-Ana Tablolar
-TabloAçıklamafilmlerFilm bilgileri ve detaylarısalonlarSinema salonları ve özellikleriseanslarFilm gösterim seanslarıkoltuklarSalon koltuk düzenlerimusterilerMüşteri bilgileribiletlerSatılan bilet kayıtlarıodemelerÖdeme işlemlericalisanlarPersonel bilgileri
-🚀 Kurulum
-Gereksinimler
+## 🚀 Kurulum
 
-MySQL 5.7+ veya PostgreSQL 10+
-SQL Management Tool (phpMyAdmin, MySQL Workbench, vb.)
+### Gereksinimler
+- MySQL 5.7+ veya PostgreSQL 10+
+- SQL Management Tool (phpMyAdmin, MySQL Workbench, vb.)
 
-Adım Adım Kurulum
+### Adım Adım Kurulum
 
-Repository'yi klonlayın:
-
-bashgit clone https://github.com/elifnuroksuzz/BiletSatisSinema.git
+1. **Repository'yi klonlayın:**
+```bash
+git clone https://github.com/elifnuroksuzz/BiletSatisSinema.git
 cd BiletSatisSinema
+```
 
-Veritabanını oluşturun:
-
-sqlCREATE DATABASE sinema_bilet_satis;
+2. **Veritabanını oluşturun:**
+```sql
+CREATE DATABASE sinema_bilet_satis;
 USE sinema_bilet_satis;
+```
 
-Tabloları oluşturun:
-
-bash# SQL dosyalarını sırayla çalıştırın
+3. **Tabloları oluşturun:**
+```bash
+# SQL dosyalarını sırayla çalıştırın
 mysql -u username -p sinema_bilet_satis < database_schema.sql
 mysql -u username -p sinema_bilet_satis < sample_data.sql
-📊 ER Diyagramı
+```
+
+## 📊 ER Diyagramı
+
 Proje, normalize edilmiş veritabanı tasarımı prensiplerine uygun olarak tasarlanmıştır:
 
-1NF, 2NF, 3NF kurallarina uygun normalizasyon
-Primary Key ve Foreign Key ilişkileri
-One-to-Many ve Many-to-Many ilişki türleri
-Referential Integrity korunması
+- **1NF, 2NF, 3NF** kurallarina uygun normalizasyon
+- **Primary Key** ve **Foreign Key** ilişkileri
+- **One-to-Many** ve **Many-to-Many** ilişki türleri
+- **Referential Integrity** korunması
 
-💡 Örnek Kullanım Senaryoları
-🎬 Film Programlama
-sql-- Yeni film ekleme
+## 💡 Örnek Kullanım Senaryoları
+
+### 🎬 Film Programlama
+```sql
+-- Yeni film ekleme
 INSERT INTO filmler (ad, tur, sure, yonetmen, yas_siniri) 
 VALUES ('Avatar: Su Yolu', 'Bilim Kurgu', 192, 'James Cameron', '13+');
 
 -- Seans oluşturma
 INSERT INTO seanslar (film_id, salon_id, tarih, saat, fiyat) 
 VALUES (1, 1, '2024-01-15', '20:00', 35.00);
-🎫 Bilet Satışı
-sql-- Bilet rezervasyonu
+```
+
+### 🎫 Bilet Satışı
+```sql
+-- Bilet rezervasyonu
 INSERT INTO biletler (musteri_id, seans_id, koltuk_id, fiyat, durum) 
 VALUES (123, 456, 789, 35.00, 'SATIN_ALINDI');
-📈 Raporlama Özellikleri
+```
 
-Günlük/Aylık satış raporları
-En popüler filmler analizi
-Salon doluluk oranları
-Müşteri demografik analizleri
-Gelir trend analizleri
+## 📈 Raporlama Özellikleri
 
-🔧 Teknik Özellikler
+- **Günlük/Aylık satış raporları**
+- **En popüler filmler analizi**
+- **Salon doluluk oranları**
+- **Müşteri demografik analizleri**
+- **Gelir trend analizleri**
 
-Ölçeklenebilir tasarım: Büyük sinema zincirleri için uygun
-Performans optimizasyonu: İndexler ve query optimizasyonu
-Veri bütünlüğü: Constraint'ler ve trigger'lar
-Güvenlik: Kullanıcı rolleri ve yetkilendirme
+## 🔧 Teknik Özellikler
 
-🤝 Katkıda Bulunma
+- **Ölçeklenebilir tasarım:** Büyük sinema zincirleri için uygun
+- **Performans optimizasyonu:** İndexler ve query optimizasyonu
+- **Veri bütünlüğü:** Constraint'ler ve trigger'lar
+- **Güvenlik:** Kullanıcı rolleri ve yetkilendirme
 
-Fork yapın
-Feature branch oluşturun (git checkout -b feature/yeni-ozellik)
-Değişiklikleri commit edin (git commit -am 'Yeni özellik eklendi')
-Branch'inizi push edin (git push origin feature/yeni-ozellik)
-Pull Request oluşturun
+## 🤝 Katkıda Bulunma
 
-📝 Lisans
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için LICENSE dosyasına bakın.
-👩‍💻 Geliştirici
-Elif Nur Öksüz
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/yeni-ozellik`)
+3. Değişiklikleri commit edin (`git commit -am 'Yeni özellik eklendi'`)
+4. Branch'inizi push edin (`git push origin feature/yeni-ozellik`)
+5. Pull Request oluşturun
 
-GitHub: @elifnuroksuzz
-Email: [İletişim bilgileri]
+## 📝 Lisans
 
-🙏 Teşekkürler
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
+## 👩‍💻 Geliştirici
+
+**Elif Nur Öksüz**
+- GitHub: [@elifnuroksuzz](https://github.com/elifnuroksuzz)
+- Email: [İletişim bilgileri]
+
+## 🙏 Teşekkürler
+
 Bu projeyi geliştirirken yardımcı olan herkese teşekkür ederiz!
 
+---
+
 ⭐ Bu projeyi beğendiyseniz yıldızlamayı unutmayın!
-🐛 Hata bulursanız veya öneriniz varsa Issues sayfasından bize ulaşın.
+
+🐛 Hata bulursanız veya öneriniz varsa [Issues](https://github.com/elifnuroksuzz/BiletSatisSinema/issues) sayfasından bize ulaşın.
